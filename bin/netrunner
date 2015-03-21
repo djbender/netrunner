@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+# Trap interrupts to quit cleanly. See
+# https://twitter.com/mitchellh/status/283014103189053442
+Signal.trap('INT') { abort }
+
+require 'netrunner'
+
+# Output message to $stderr, prefixed with the program name
+def pute(*args)
+  first = args.shift.dup
+  first.insert(0, "#{$PROGRAM_NAME}: ")
+  args.unshift(first)
+  abort(args.join("\n"))
+end
+
+begin
+  Netrunner::CLI.start(ARGV)
+rescue Interrupt
+  pute 'Quitting...'
+end

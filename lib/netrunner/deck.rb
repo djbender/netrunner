@@ -1,12 +1,7 @@
+require 'algorithms'
+
 module Netrunner
-  class Deck
-
-    def initialize(deck = [])
-      @deck = deck
-    end
-
-    def add(card)
-      @deck << card
-    end
+  class Deck < Containers::Stack
+    alias_method :draw, :pop
   end
 end

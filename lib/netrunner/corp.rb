@@ -1,3 +1,4 @@
 module Netrunner
-  VERSION = '0.0.1'
+  class Corp
+  end
 end
